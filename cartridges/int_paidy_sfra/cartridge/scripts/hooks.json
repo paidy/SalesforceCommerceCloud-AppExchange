@@ -1,0 +1,20 @@
+{
+	"hooks": [
+		{
+			"name": "app.payment.processor.paidy_regular",
+			"script": "./payment/processor/paidyRegular"
+		},
+		{
+			"name": "app.payment.processor.paidy_normal",
+			"script": "./payment/processor/paidyNormal"
+		},
+		{
+			"name": "app.payment.form.processor.paidy_regular",
+			"script": "./payment/processor/paidyRegularFormProcessor"
+		},
+		{
+			"name": "app.payment.form.processor.paidy_normal",
+			"script": "./payment/processor/paidyNormalFormProcessor"
+		}
+	]
+}

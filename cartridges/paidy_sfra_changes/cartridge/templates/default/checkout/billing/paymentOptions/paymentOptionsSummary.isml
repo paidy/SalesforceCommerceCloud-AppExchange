@@ -1,0 +1,19 @@
+<div class="payment-details">
+    <isloop items="${pdict.order.billing.payment.selectedPaymentInstruments}" var="payment">
+        <isif condition="${payment.paymentMethod === 'CREDIT_CARD'}">
+            <isinclude template="checkout/billing/paymentOptions/creditCardSummary" />
+        </isif>
+        <isif condition="${payment.paymentMethod === 'PAIDY_NORMAL'}">
+            <isinclude template="checkout/billing/paymentOptions/paidyNormalSummary" />
+        </isif>
+        <isif condition="${payment.paymentMethod === 'PAIDY_REGULAR'}">
+            <isinclude template="checkout/billing/paymentOptions/paidyRegularSummary" />
+        </isif>
+    </isloop>
+</div>
+<div class="payment-details-summary paidy-normal" style="display: none;">
+    <isinclude template="checkout/billing/paymentOptions/paidyNormalSummary" />
+</div>
+<div class="payment-details-summary paidy-regular" style="display: none;">
+    <isinclude template="checkout/billing/paymentOptions/paidyRegularSummary" />
+</div>

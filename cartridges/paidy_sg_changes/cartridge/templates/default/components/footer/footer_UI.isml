@@ -1,0 +1,62 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<!--[if gte IE 9 | !IE]><!-->
+  <script src="${URLUtils.staticURL('/lib/jquery/jquery.min.js')}" type="text/javascript"></script>
+<!--<![endif]-->
+
+<!--[if IE 9]>
+  <script src="//cdn.rawgit.com/paulirish/matchMedia.js/master/matchMedia.js" type="text/javascript"></script>
+  <script src="//cdn.rawgit.com/paulirish/matchMedia.js/master/matchMedia.addListener.js" type="text/javascript"></script>
+<![endif]-->
+
+<script src="${URLUtils.staticURL('/lib/jquery/ui/jquery-ui.min.js')}" type="text/javascript"></script>
+
+<iscomment>third-party add-ons</iscomment>
+<script src="${URLUtils.staticURL('/lib/jquery/jquery.jcarousel.min.js')}" type="text/javascript"></script>
+<script src="${URLUtils.staticURL('/lib/jquery/jquery.validate.min.js')}" type="text/javascript"></script>
+<script src="${URLUtils.staticURL('/lib/jquery/jquery.zoom.min.js')}" ></script>
+<script type="text/javascript"><isinclude template="resources/appresources"/></script>
+<script type="text/javascript"><isinclude url="${URLUtils.url('Resources-LoadTransient')}"/></script>
+<script>var consent = ${session.custom.consentTracking};</script>
+<script src="${URLUtils.staticURL('/js/app.js')}"></script>
+
+<isscript>
+if (!empty(pdict.Basket)) {
+    var paymentMethods  = pdict.Basket.getPaymentInstruments();
+    var paymentMethod  = '';
+
+   if (paymentMethods != null && !paymentMethods.isEmpty() ) {
+    for( var i = 0; i < paymentMethods.length ; i++  ){
+    if(  paymentMethods[i] != null && paymentMethods[i].paymentMethod != "GIFT_CERTIFICATE" )
+      paymentMethod  = paymentMethods[i].paymentMethod;
+    }
+   }
+}
+</isscript>
+<isif condition="${paymentMethod=='PAIDY_NORMAL'}">
+<script type="text/javascript" src="https://apps.paidy.com/"></script>
+<script src="${URLUtils.staticURL('js/paidyNormal.js')}"></script>
+<iselseif condition="${paymentMethod=='PAIDY_REGULAR'}">
+<script type="text/javascript" src="https://apps.paidy.com/"></script>
+<script src="${URLUtils.staticURL('js/paidyRegular.js')}"></script>
+<iselse/>
+<script>
+(function(){
+    var button = $('.submit-order button[type="submit"]');
+    if(button.length) {
+        button.prop('disabled', false);
+        button.removeClass('disabled');
+    }
+}());
+</script>
+</isif>
+
+<isif condition="${!('pageContext' in this) || empty(pageContext)}">
+    <isscript>pageContext = new Object();</isscript>
+</isif>
+<script>pageContext = <isprint value="${JSON.stringify(pageContext)}" encoding="off"/>;</script>
+<script>
+var meta = "${pdict.CurrentPageMetaData.description}";
+var keywords = "${pdict.CurrentPageMetaData.keywords}";
+</script>
+

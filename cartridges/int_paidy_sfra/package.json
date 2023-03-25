@@ -1,0 +1,5 @@
+{
+    "paidyCartridge": "int_paidy_sfra",
+    "hooks": "./cartridge/scripts/hooks.json",
+    "controllers": "paidy_storefront_controllers"
+}

@@ -1,0 +1,5 @@
+{
+   "hooks": "./cartridge/scripts/hooks.json",
+   "paidyCartridge": "int_paidy"
+
+}

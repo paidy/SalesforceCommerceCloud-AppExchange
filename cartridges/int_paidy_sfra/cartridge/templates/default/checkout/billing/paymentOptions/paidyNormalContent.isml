@@ -1,0 +1,11 @@
+<div class="tab-pane paidy-normal-content" id="paidy-normal-content" role="tabpanel">
+    <fieldset class="payment-form-fields">
+        <!--- payment method is paidy normal --->
+        <input type="hidden" class="form-control"
+               name="${pdict.forms.billingForm.paymentMethod.htmlName}"
+               value="${Resource.msg('paidy.payment.method.normal.type', 'paidy', null)}"
+        >
+        <iscomment>Unless encoding is "off", HTML described in the property file cannot be used.</iscomment>
+        <isprint value="${Resource.msg('paidy.payment.content', 'paidy', null)}" encoding="xmlcomment" >
+    </fieldset>
+</div>

@@ -1,0 +1,5 @@
+{
+    "paidyCartridge": "int_paidy",
+    "hooks": "./cartridge/scripts/hooks.json",
+    "controllers": "sitegenesis_storefront_controllers"
+}

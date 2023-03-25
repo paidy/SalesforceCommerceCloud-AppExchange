@@ -1,0 +1,15 @@
+<isset name="paymentMethod" value="${require('*/cartridge/scripts/checkout/checkoutHelpers').selectedPaymentInstrument(pdict.order)}" scope="page"/>
+<div class="form-nav billing-nav payment-information"
+     data-payment-method-id="CREDIT_CARD"
+     data-selected-payment-method="${paymentMethod}"
+     data-is-new-payment="${pdict.customer.registeredUser && pdict.customer.customerPaymentInstruments.length ? false : true}"
+>
+    <ul class="nav nav-tabs nav-fill payment-options" role="tablist">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsTabs" />
+    </ul>
+</div>
+<div class="credit-card-selection-new" >
+    <div class="tab-content">
+        <isinclude template="checkout/billing/paymentOptions/paymentOptionsContent" />
+    </div>
+</div>
