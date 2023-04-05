@@ -1,12 +1,12 @@
 {
 	"hooks": [
 		{
-			"name": "app.payment.processor.PAIDY_REGULAR",
-			"script": "./payment/processor/paidyRegular"
+			"name": "app.payment.processor.PAIDY_SUBSCRIPTION",
+			"script": "./payment/processor/paidySubscription"
 		},
 		{
-			"name": "app.payment.processor.PAIDY_NORMAL",
-			"script": "./payment/processor/paidyNormal"
+			"name": "app.payment.processor.PAIDY_STANDARD",
+			"script": "./payment/processor/paidyStandard"
 		}
 	]
 }

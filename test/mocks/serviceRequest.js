@@ -1,6 +1,6 @@
 'use strict';
 
-function regularRequest() {
+function subscriptionRequest() {
     return {
         name: 'paidy.api.payment',
         url: '/payments',
@@ -30,7 +30,9 @@ function regularRequest() {
                 shipping: 200,
                 order_ref: 'your_order_ref'
             },
-            metadata: {},
+            metadata: {
+                Platform: 'Salesforce Commerce Cloud'
+            },
             shipping_address: {
                 line1: 'AXISビル 10F',
                 line2: '六本木4-22-1',
@@ -44,5 +46,5 @@ function regularRequest() {
 }
 
 module.exports = {
-    regularRequest: regularRequest
+    subscriptionRequest: subscriptionRequest
 };

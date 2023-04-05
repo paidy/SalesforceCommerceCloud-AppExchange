@@ -4,8 +4,8 @@
   var checkoutStage = $('.data-checkout-stage').attr('data-checkout-stage');
   var paidyPayment = $('.payment-information').data('selected-payment-method');
   var buttonSelector = '.next-step-button button.place-order';
-  var PAIDY_NORMAL = 'PAIDY_NORMAL';
-  var PAIDY_REGULAR = 'PAIDY_REGULAR';
+  var PAIDY_STANDARD = 'PAIDY_STANDARD';
+  var PAIDY_SUBSCRIPTION = 'PAIDY_SUBSCRIPTION';
   var api_key = null;
   var logo_url = null;
   var timeout = 300;
@@ -18,7 +18,7 @@
   };
 
   var paidyConfig = {};
-  var paidyPayNormal = null;
+  var paidyPayStandard = null;
   var paidyHandler = null;
 
   /**
@@ -27,12 +27,12 @@
   function loadPaymentDetail() {
     $('.payment-details').show();
     $('.payment-details-summary').hide();
-    if (paidyPayment.indexOf(PAIDY_NORMAL) >= 0) {
+    if (paidyPayment.indexOf(PAIDY_STANDARD) >= 0) {
       $('.payment-details').hide();
-      $('.payment-details-summary.paidy-normal').show();
-    } else if (paidyPayment.indexOf(PAIDY_REGULAR) >= 0) {
+      $('.payment-details-summary.paidy-standard').show();
+    } else if (paidyPayment.indexOf(PAIDY_SUBSCRIPTION) >= 0) {
       $('.payment-details').hide();
-      $('.payment-details-summary.paidy-regular').show();
+      $('.payment-details-summary.paidy-subscription').show();
     }
   }
 
@@ -42,24 +42,24 @@
   function paidyLoad() {
     loadPaymentDetail();
 
-    if (paidyPayment.indexOf(PAIDY_NORMAL) >= 0) {
-      getPaidyNormalConfig();
-    } else if (paidyPayment.indexOf(PAIDY_REGULAR) >= 0) {
-      getPaidyRegularConfig();
+    if (paidyPayment.indexOf(PAIDY_STANDARD) >= 0) {
+      getPaidyStandardConfig();
+    } else if (paidyPayment.indexOf(PAIDY_SUBSCRIPTION) >= 0) {
+      getPaidySubscriptionConfig();
     }
   }
 
   /**
-   * Load paidy normal config
+   * Load paidy standard config
    */
-  function getPaidyNormalConfig() {
+  function getPaidyStandardConfig() {
     disableSubmitBtn(buttonSelector);
 
     $.ajaxSetup({
       async: false
     });
     $.ajax({
-      url: $(buttonSelector).attr('data-get-paidy-normal-config'),
+      url: $(buttonSelector).attr('data-get-paidy-standard-config'),
       type: 'get',
       dataType: 'json',
       success: function (data) {
@@ -68,7 +68,7 @@
         timeout = data.timeout || timeout;
         messages = data.messages || messages;
 
-        if (data.payment_method == PAIDY_NORMAL) {
+        if (data.payment_method == PAIDY_STANDARD) {
           onPaidyReady();
         }
       }
@@ -76,16 +76,16 @@
   }
 
   /**
-   * Load paidy regular config
+   * Load paidy subscription config
    */
-  function getPaidyRegularConfig() {
+  function getPaidySubscriptionConfig() {
     disableSubmitBtn(buttonSelector);
 
     $.ajaxSetup({
       async: false
     });
     $.ajax({
-      url: $(buttonSelector).attr('data-get-paidy-regular-config'),
+      url: $(buttonSelector).attr('data-get-paidy-subscription-config'),
       type: 'get',
       dataType: 'json',
       success: function (data) {
@@ -106,7 +106,7 @@
             e.stopPropagation();
             e.preventDefault();
 
-            paidyPayRegular();
+            paidyPaySubscription();
 
             return false;
           });
@@ -117,9 +117,9 @@
   }
 
   /**
-   * Init paidy regular popup event
+   * Init paidy subscription popup event
    */
-  function paidyPayRegular() {
+  function paidyPaySubscription() {
     paidyConfig.config.closed = paidyCloseCallBack;
     paidyHandler = Paidy.configure(paidyConfig.config);
     paidyHandler.launch(paidyConfig.payload);
@@ -141,7 +141,7 @@
   }
 
   /**
-   * Init paidy normal event
+   * Init paidy standard event
    */
   function onPaidyReady() {
     var config = {
@@ -151,7 +151,7 @@
     };
     if (!config['logo_url']) delete config['logo_url'];
 
-    paidyPayNormal = function (payload) {
+    paidyPayStandard = function (payload) {
       config.closed = onPaidyClosed(payload);
       var paidy = Paidy.configure(config);
 
@@ -170,7 +170,7 @@
         e.stopPropagation();
         e.preventDefault();
         createOrder(function (payload) {
-          paidyPayNormal(payload);
+          paidyPayStandard(payload);
         });
 
         return false;
@@ -204,7 +204,7 @@
   }
 
   /**
-   * Paidy normal popup close event
+   * Paidy standard popup close event
    */
   function onPaidyClosed(payloadToPaidy) {
     var rejected = false;
@@ -230,7 +230,7 @@
           $.ajax({
             type: 'get',
             dataType: 'json',
-            url: $(buttonSelector).attr('data-paidy-normal-place-order'),
+            url: $(buttonSelector).attr('data-paidy-standard-place-order'),
             data: {
               order_id: escape(orderNo),
               orderNo: escape(orderNo),
@@ -258,7 +258,7 @@
           $.ajax({
             method: 'get',
             dataType: 'json',
-            url: $(buttonSelector).attr('data-paidy-normal-fail-order'),
+            url: $(buttonSelector).attr('data-paidy-standard-fail-order'),
             data: {
               orderNo: escape(orderNo),
               csrf_token: csrfToken,
@@ -276,7 +276,7 @@
   }
 
   /**
-   * Paidy regular popup close event
+   * Paidy subscription popup close event
    */
   function paidyCloseCallBack(rs) {
     switch (rs.status) {
@@ -325,7 +325,7 @@
     $.ajax({
       method: 'get',
       dataType: 'json',
-      url: $(buttonSelector).attr('data-paidy-normal-fail-order'),
+      url: $(buttonSelector).attr('data-paidy-standard-fail-order'),
       data: {
         orderNo: escape(orderNo),
         csrf_token: csrfToken
@@ -390,8 +390,8 @@
    */
   function isPaidyPay() {
     return (
-      paidyPayment.indexOf(PAIDY_NORMAL) >= 0 ||
-      paidyPayment.indexOf(PAIDY_REGULAR) >= 0
+      paidyPayment.indexOf(PAIDY_STANDARD) >= 0 ||
+      paidyPayment.indexOf(PAIDY_SUBSCRIPTION) >= 0
     );
   }
 

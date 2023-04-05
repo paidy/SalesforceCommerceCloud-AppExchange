@@ -5,8 +5,8 @@
  */
 function PaymentType() {}
 
-PaymentType.paydyNomal = 'PAIDY_NORMAL';
-PaymentType.paydyRegular = 'PAIDY_REGULAR';
+PaymentType.paidyStandard = 'PAIDY_STANDARD';
+PaymentType.paidySubscription = 'PAIDY_SUBSCRIPTION';
 
 module.exports = {
     PaymentType: PaymentType

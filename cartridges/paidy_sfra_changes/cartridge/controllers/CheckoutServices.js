@@ -683,15 +683,15 @@ server.post('PlaceOrder', server.middleware.https, function (req, res, next) {
         return next();
     }
 
-    if (paidyHelpers.isPaidyNormal(currentBasket.paymentInstrument.paymentMethod)) {
-        var responseJson = require('*/cartridge/scripts/paidy/normal/authorize')
+    if (paidyHelpers.isPaidyStandard(currentBasket.paymentInstrument.paymentMethod)) {
+        var responseJson = require('*/cartridge/scripts/paidy/standard/authorize')
             .getConfirmationPaidyJSON(currentBasket.paymentInstrument.paymentMethod, order.getCustomer(), order);
         res.json(responseJson);
         return next();
-    } else if (paidyHelpers.isPaidyRegular(currentBasket.paymentInstrument.paymentMethod)) {
-        var paidyRegularAuthorize = require('*/cartridge/scripts/paidy/regular/authorize')
+    } else if (paidyHelpers.isPaidySubscription(currentBasket.paymentInstrument.paymentMethod)) {
+        var paidySubscriptionAuthorize = require('*/cartridge/scripts/paidy/subscription/authorize')
             .Authorize(order, req.querystring.paidyToken);
-        if (paidyRegularAuthorize.error) {
+        if (paidySubscriptionAuthorize.error) {
             Transaction.wrap(function () { OrderMgr.failOrder(order); });
             res.json({
                 error: true,

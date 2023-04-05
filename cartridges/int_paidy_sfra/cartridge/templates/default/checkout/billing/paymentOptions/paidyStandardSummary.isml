@@ -1,0 +1,3 @@
+<div class="payment-paidy-standard">
+    <span>${Resource.msg('paidy.payment.method.standard.name', 'paidy', null)}</span>
+</div>

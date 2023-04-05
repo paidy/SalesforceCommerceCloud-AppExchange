@@ -367,16 +367,16 @@ function resetPaymentForms() {
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_CREDIT_CARD));
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_BML));
 
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_NORMAL'));
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_REGULAR'));
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_STANDARD'));
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_SUBSCRIPTION'));
         } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals(PaymentInstrument.METHOD_CREDIT_CARD)) {
             app.getForm('billing').object.paymentMethods.bml.clearFormElement();
 
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_BML));
             cart.removePaymentInstruments(cart.getPaymentInstruments('PayPal'));
 
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_NORMAL'));
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_REGULAR'));
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_STANDARD'));
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_SUBSCRIPTION'));
         } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals(PaymentInstrument.METHOD_BML)) {
             app.getForm('billing').object.paymentMethods.creditCard.clearFormElement();
 
@@ -387,24 +387,24 @@ function resetPaymentForms() {
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_CREDIT_CARD));
             cart.removePaymentInstruments(cart.getPaymentInstruments('PayPal'));
 
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_NORMAL'));
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_REGULAR'));
-        } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals('PAIDY_NORMAL')) {
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_STANDARD'));
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_SUBSCRIPTION'));
+        } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals('PAIDY_STANDARD')) {
             app.getForm('billing').object.paymentMethods.creditCard.clearFormElement();
             app.getForm('billing').object.paymentMethods.bml.clearFormElement();
 
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_CREDIT_CARD));
             cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_BML));
             cart.removePaymentInstruments(cart.getPaymentInstruments('PayPal'));
-            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_REGULAR'));
-        } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals('PAIDY_REGULAR')) {
+            cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_SUBSCRIPTION'));
+        } else if (app.getForm('billing').object.paymentMethods.selectedPaymentMethodID.value.equals('PAIDY_SUBSCRIPTION')) {
 	        app.getForm('billing').object.paymentMethods.creditCard.clearFormElement();
 	        app.getForm('billing').object.paymentMethods.bml.clearFormElement();
 
 	        cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_CREDIT_CARD));
 	        cart.removePaymentInstruments(cart.getPaymentInstruments(PaymentInstrument.METHOD_BML));
 	        cart.removePaymentInstruments(cart.getPaymentInstruments('PayPal'));
-	        cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_NORMAL'));
+	        cart.removePaymentInstruments(cart.getPaymentInstruments('PAIDY_STANDARD'));
         }
         return true;
     });

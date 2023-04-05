@@ -47,7 +47,7 @@ function diffDays(d1, d2) {
  * Get a buyer Information definition for API or  Get a buyer data definition for API
  * @param {Object} customer - The customer object extracted by getCustomer() from order object
  * @param {Object} now - An object containing a timestamp
- * @returns {Object} Return "buyer_data" information required for the request to PaidyRegular API
+ * @returns {Object} Return "buyer_data" information required for the request to PaidySubscription API
  */
 function getBuyerData(customer, now) {
     if (customer.anonymous) {
@@ -76,8 +76,8 @@ function getBuyerData(customer, now) {
         if (
             o.status !== Order.ORDER_STATUS_FAILED &&
             o.status !== Order.ORDER_STATUS_CANCELLED &&
-            empty(o.getPaymentInstruments(Preferences.PaymentType.paydyNomal)) &&
-      empty(o.getPaymentInstruments(Preferences.PaymentType.paydyRegular))
+            empty(o.getPaymentInstruments(Preferences.PaymentType.paidyStandard)) &&
+      empty(o.getPaymentInstruments(Preferences.PaymentType.paidySubscription))
         ) {
             var jt = o.getPaymentInstruments().iterator();
 

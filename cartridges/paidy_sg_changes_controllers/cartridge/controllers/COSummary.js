@@ -79,7 +79,7 @@ function submit() {
         app
           .getView({
               JSONResponse: require(paidyCartridge +
-              '/cartridge/scripts/paidy/normal/authorize').getConfirmationPaidyJSON(
+              '/cartridge/scripts/paidy/standard/authorize').getConfirmationPaidyJSON(
               currentForms.billing.paymentMethods.selectedPaymentMethodID.value,
               customer,
               placeOrderResult.Order

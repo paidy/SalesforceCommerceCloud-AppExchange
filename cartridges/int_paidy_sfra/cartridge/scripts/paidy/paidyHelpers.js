@@ -8,26 +8,26 @@ var PaymentInstrument = require('dw/order/PaymentInstrument');
 var cartHelpers = require('*/cartridge/scripts/cart/cartHelpers');
 var Preferences = require('*/cartridge/scripts/object/preferences');
 
-var PAIDY_NORMAL = Preferences.PaymentType.paydyNomal;
-var PAIDY_REGULAR = Preferences.PaymentType.paydyRegular;
+var PAIDY_STANDARD = Preferences.PaymentType.paidyStandard;
+var PAIDY_SUBSCRIPTION = Preferences.PaymentType.paidySubscription;
 
 // static functions needed for paidy payment logic
 
 /**
  * Check current payment method is Paidy payment
  * @param {string} paymentMethod - current payment method
- * @returns {boolean} Returns true if the current payment method is Paidy normal payment, false otherwise
+ * @returns {boolean} Returns true if the current payment method is Paidy standard payment, false otherwise
  */
-function isPaidyNormal(paymentMethod) {
-    return paymentMethod === PAIDY_NORMAL;
+function isPaidyStandard(paymentMethod) {
+    return paymentMethod === PAIDY_STANDARD;
 }
 /**
- * Check current payment method is Paidy regular payment
+ * Check current payment method is Paidy subscription payment
  * @param {string} paymentMethod - current payment method
- * @returns {boolean} Returns true if the current payment method is Paidy regular payment, false otherwise
+ * @returns {boolean} Returns true if the current payment method is Paidy subscription payment, false otherwise
  */
-function isPaidyRegular(paymentMethod) {
-    return paymentMethod === PAIDY_REGULAR;
+function isPaidySubscription(paymentMethod) {
+    return paymentMethod === PAIDY_SUBSCRIPTION;
 }
 /**
  * Check current payment method is Paidy payment
@@ -35,7 +35,7 @@ function isPaidyRegular(paymentMethod) {
  * @returns {boolean} Returns true if the current payment method is Paidy payment, false otherwise
  */
 function isPaidyPay(paymentMethod) {
-    return isPaidyNormal(paymentMethod) || isPaidyRegular(paymentMethod);
+    return isPaidyStandard(paymentMethod) || isPaidySubscription(paymentMethod);
 }
 
 /**
@@ -49,24 +49,13 @@ function resetPaymentForms(currentBasket) {
         if (paymentMethodIdValue.equals(PaymentInstrument.METHOD_CREDIT_CARD)) {
             cartHelpers.removePaymentInstruments(
                 currentBasket,
-                currentBasket.getPaymentInstruments(PAIDY_NORMAL)
+                currentBasket.getPaymentInstruments(PAIDY_STANDARD)
             );
             cartHelpers.removePaymentInstruments(
                 currentBasket,
-                currentBasket.getPaymentInstruments(PAIDY_REGULAR)
+                currentBasket.getPaymentInstruments(PAIDY_SUBSCRIPTION)
             );
-        } else if (paymentMethodIdValue.equals(PAIDY_NORMAL)) {
-            cartHelpers.removePaymentInstruments(
-                currentBasket,
-                currentBasket.getPaymentInstruments(
-                    PaymentInstrument.METHOD_CREDIT_CARD
-                )
-            );
-            cartHelpers.removePaymentInstruments(
-                currentBasket,
-                currentBasket.getPaymentInstruments(PAIDY_REGULAR)
-            );
-        } else if (paymentMethodIdValue.equals(PAIDY_REGULAR)) {
+        } else if (paymentMethodIdValue.equals(PAIDY_STANDARD)) {
             cartHelpers.removePaymentInstruments(
                 currentBasket,
                 currentBasket.getPaymentInstruments(
@@ -75,15 +64,26 @@ function resetPaymentForms(currentBasket) {
             );
             cartHelpers.removePaymentInstruments(
                 currentBasket,
-                currentBasket.getPaymentInstruments(PAIDY_NORMAL)
+                currentBasket.getPaymentInstruments(PAIDY_SUBSCRIPTION)
+            );
+        } else if (paymentMethodIdValue.equals(PAIDY_SUBSCRIPTION)) {
+            cartHelpers.removePaymentInstruments(
+                currentBasket,
+                currentBasket.getPaymentInstruments(
+                    PaymentInstrument.METHOD_CREDIT_CARD
+                )
+            );
+            cartHelpers.removePaymentInstruments(
+                currentBasket,
+                currentBasket.getPaymentInstruments(PAIDY_STANDARD)
             );
         }
     });
 }
 
 module.exports = {
-    isPaidyNormal: isPaidyNormal,
-    isPaidyRegular: isPaidyRegular,
+    isPaidyStandard: isPaidyStandard,
+    isPaidySubscription: isPaidySubscription,
     isPaidyPay: isPaidyPay,
     resetPaymentForms: resetPaymentForms
 };

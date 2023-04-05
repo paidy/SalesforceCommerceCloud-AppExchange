@@ -14,10 +14,10 @@
             <span>${Resource.msg('msg.card.type.ending', 'confirmation', null)} ${payment.expirationMonth}/${payment.expirationYear}</span>
         </div>
     </isif>
-    <isif condition="${payment.paymentMethod === 'PAIDY_NORMAL'}">
-        <isinclude template="checkout/billing/paymentOptions/paidyNormalSummary" />
+    <isif condition="${payment.paymentMethod === 'PAIDY_STANDARD'}">
+        <isinclude template="checkout/billing/paymentOptions/paidyStandardSummary" />
     </isif>
-    <isif condition="${payment.paymentMethod === 'PAIDY_REGULAR'}">
-        <isinclude template="checkout/billing/paymentOptions/paidyRegularSummary" />
+    <isif condition="${payment.paymentMethod === 'PAIDY_SUBSCRIPTION'}">
+        <isinclude template="checkout/billing/paymentOptions/paidySubscriptionSummary" />
     </isif>
 </isloop>
