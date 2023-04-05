@@ -3,17 +3,17 @@
         <isif condition="${payment.paymentMethod === 'CREDIT_CARD'}">
             <isinclude template="checkout/billing/paymentOptions/creditCardSummary" />
         </isif>
-        <isif condition="${payment.paymentMethod === 'PAIDY_NORMAL'}">
-            <isinclude template="checkout/billing/paymentOptions/paidyNormalSummary" />
+        <isif condition="${payment.paymentMethod === 'PAIDY_STANDARD'}">
+            <isinclude template="checkout/billing/paymentOptions/paidyStandardSummary" />
         </isif>
-        <isif condition="${payment.paymentMethod === 'PAIDY_REGULAR'}">
-            <isinclude template="checkout/billing/paymentOptions/paidyRegularSummary" />
+        <isif condition="${payment.paymentMethod === 'PAIDY_SUBSCRIPTION'}">
+            <isinclude template="checkout/billing/paymentOptions/paidySubscriptionSummary" />
         </isif>
     </isloop>
 </div>
-<div class="payment-details-summary paidy-normal" style="display: none;">
-    <isinclude template="checkout/billing/paymentOptions/paidyNormalSummary" />
+<div class="payment-details-summary paidy-standard" style="display: none;">
+    <isinclude template="checkout/billing/paymentOptions/paidyStandardSummary" />
 </div>
-<div class="payment-details-summary paidy-regular" style="display: none;">
-    <isinclude template="checkout/billing/paymentOptions/paidyRegularSummary" />
+<div class="payment-details-summary paidy-subscription" style="display: none;">
+    <isinclude template="checkout/billing/paymentOptions/paidySubscriptionSummary" />
 </div>

@@ -1,6 +1,6 @@
 'use strict';
 
-function regularResponse() {
+function subscriptionResponse() {
     return {
         id: 'pay_WD1KIj4AALQAIMtZ',
         created_at: '2018-06-14T05:27:10.063Z',
@@ -42,10 +42,12 @@ function regularResponse() {
         },
         captures: [],
         refunds: [],
-        metadata: {}
+        metadata: {
+            Platform: 'Salesforce Commerce Cloud'
+        }
     };
 }
 
 module.exports = {
-    regularResponse: regularResponse
+    subscriptionResponse: subscriptionResponse
 };

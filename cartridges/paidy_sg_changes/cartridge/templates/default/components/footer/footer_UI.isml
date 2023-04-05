@@ -33,12 +33,12 @@ if (!empty(pdict.Basket)) {
    }
 }
 </isscript>
-<isif condition="${paymentMethod=='PAIDY_NORMAL'}">
+<isif condition="${paymentMethod=='PAIDY_STANDARD'}">
 <script type="text/javascript" src="https://apps.paidy.com/"></script>
-<script src="${URLUtils.staticURL('js/paidyNormal.js')}"></script>
-<iselseif condition="${paymentMethod=='PAIDY_REGULAR'}">
+<script src="${URLUtils.staticURL('js/paidyStandard.js')}"></script>
+<iselseif condition="${paymentMethod=='PAIDY_SUBSCRIPTION'}">
 <script type="text/javascript" src="https://apps.paidy.com/"></script>
-<script src="${URLUtils.staticURL('js/paidyRegular.js')}"></script>
+<script src="${URLUtils.staticURL('js/paidySubscription.js')}"></script>
 <iselse/>
 <script>
 (function(){

@@ -105,11 +105,11 @@
                             </button>
 
                             <button class="btn btn-primary btn-block place-order" data-action="${URLUtils.url('CheckoutServices-PlaceOrder')}"
-                                    data-get-paidy-normal-config="${URLUtils.url('PaidyNormal-GetPaidyConfig')}"
-                                    data-paidy-normal-fail-order="${URLUtils.url('PaidyNormal-FailOrder')}"
-                                    data-paidy-normal-place-order="${URLUtils.url('PaidyNormal-PlaceOrder')}"
-                                    data-get-paidy-regular-config="${URLUtils.url('PaidyRegular-GetPaidyConfig')}"
-                                    data-paidy-regular-set-token="${URLUtils.url('PaidyRegular-SetPaidyToken')}"
+                                    data-get-paidy-standard-config="${URLUtils.url('PaidyStandard-GetPaidyConfig')}"
+                                    data-paidy-standard-fail-order="${URLUtils.url('PaidyStandard-FailOrder')}"
+                                    data-paidy-standard-place-order="${URLUtils.url('PaidyStandard-PlaceOrder')}"
+                                    data-get-paidy-subscription-config="${URLUtils.url('PaidySubscription-GetPaidyConfig')}"
+                                    data-paidy-subscription-set-token="${URLUtils.url('PaidySubscription-SetPaidyToken')}"
                                     type="submit" name="submit" value="place-order">${Resource.msg('button.place.order', 'checkout', null)}
                             </button>
                         </div>
