@@ -204,13 +204,13 @@ ResourceHelper.getUrls = function(pageContext) {
         consentTrackingSetSession   : URLUtils.url('Account-ConsentTracking').toString(),
         rateLimiterReset            : URLUtils.url('RateLimiter-HideCaptcha').toString(),
         csrffailed                  : URLUtils.url('CSRF-Failed').toString(),
-        getPaidyNormalPaidyConfig   : URLUtils.https("PaidyNormal-GetPaidyConfig").toString(),
-        doPaidyNormalCOSummarySubmit: URLUtils.https("COSummary-Submit").toString(),
-        doPaidyNormalFailOrder      : URLUtils.https("PaidyNormal-FailOrder").toString(),
-        doPaidyNormalPlaceOrder     : URLUtils.https("PaidyNormal-PlaceOrder").toString(),
-        getPaidyNormalOrderToken    : URLUtils.https("PaidyNormal-GetOrderToken").toString(),
-        getPaidyRegularConfig       : URLUtils.url('PaidyRegular-GetPaidyConfig').toString(),
-        setPaidyRegularToken        : URLUtils.url('PaidyRegular-SetPaidyToken').toString()
+        getPaidyStandardPaidyConfig   : URLUtils.https("PaidyStandard-GetPaidyConfig").toString(),
+        doPaidyStandardCOSummarySubmit: URLUtils.https("COSummary-Submit").toString(),
+        doPaidyStandardFailOrder      : URLUtils.https("PaidyStandard-FailOrder").toString(),
+        doPaidyStandardPlaceOrder     : URLUtils.https("PaidyStandard-PlaceOrder").toString(),
+        getPaidyStandardOrderToken    : URLUtils.https("PaidyStandard-GetOrderToken").toString(),
+        getPaidySubscriptionConfig       : URLUtils.url('PaidySubscription-GetPaidyConfig').toString(),
+        setPaidySubscriptionToken        : URLUtils.url('PaidySubscription-SetPaidyToken').toString()
 
     };
     return urls;

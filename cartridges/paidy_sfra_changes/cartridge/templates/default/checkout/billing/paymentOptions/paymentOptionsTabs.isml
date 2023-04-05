@@ -2,10 +2,10 @@
     <isif condition="${paymentOption.ID === 'CREDIT_CARD'}">
         <isinclude template="checkout/billing/paymentOptions/creditCardTab" />
     </isif>
-    <isif condition="${paymentOption.ID === 'PAIDY_NORMAL'}">
-        <isinclude template="checkout/billing/paymentOptions/paidyNormalTab" />
+    <isif condition="${paymentOption.ID === 'PAIDY_STANDARD'}">
+        <isinclude template="checkout/billing/paymentOptions/paidyStandardTab" />
     </isif>
-    <isif condition="${paymentOption.ID === 'PAIDY_REGULAR'}">
-        <isinclude template="checkout/billing/paymentOptions/paidyRegularTab" />
+    <isif condition="${paymentOption.ID === 'PAIDY_SUBSCRIPTION'}">
+        <isinclude template="checkout/billing/paymentOptions/paidySubscriptionTab" />
     </isif>
 </isloop>

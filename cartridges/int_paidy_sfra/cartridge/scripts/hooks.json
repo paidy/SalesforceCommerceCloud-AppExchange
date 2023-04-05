@@ -1,20 +1,20 @@
 {
 	"hooks": [
 		{
-			"name": "app.payment.processor.paidy_regular",
-			"script": "./payment/processor/paidyRegular"
+			"name": "app.payment.processor.paidy_subscription",
+			"script": "./payment/processor/paidySubscription"
 		},
 		{
-			"name": "app.payment.processor.paidy_normal",
-			"script": "./payment/processor/paidyNormal"
+			"name": "app.payment.processor.paidy_standard",
+			"script": "./payment/processor/paidyStandard"
 		},
 		{
-			"name": "app.payment.form.processor.paidy_regular",
-			"script": "./payment/processor/paidyRegularFormProcessor"
+			"name": "app.payment.form.processor.paidy_subscription",
+			"script": "./payment/processor/paidySubscriptionFormProcessor"
 		},
 		{
-			"name": "app.payment.form.processor.paidy_normal",
-			"script": "./payment/processor/paidyNormalFormProcessor"
+			"name": "app.payment.form.processor.paidy_standard",
+			"script": "./payment/processor/paidyStandardFormProcessor"
 		}
 	]
 }

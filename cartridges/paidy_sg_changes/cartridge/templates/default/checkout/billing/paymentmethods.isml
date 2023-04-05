@@ -19,8 +19,8 @@
 				<iscomment>Ignore GIFT_CERTIFICATE method, GCs are handled separately before other payment methods.</iscomment>
 				<isif condition="${paymentMethodType.value.equals(dw.order.PaymentInstrument.METHOD_GIFT_CERTIFICATE)}"><iscontinue/></isif>
 				<iscomment>Ignore PAIDY method if isPaidyEnabled is OFF.</iscomment>
-				<isif condition="${!isPaidyEnabled && paymentMethodType.value.equals('PAIDY_REGULAR')}"><iscontinue/></isif>
-				<isif condition="${!isPaidyEnabled && paymentMethodType.value.equals('PAIDY_NORMAL')}"><iscontinue/></isif>
+				<isif condition="${!isPaidyEnabled && paymentMethodType.value.equals('PAIDY_SUBSCRIPTION')}"><iscontinue/></isif>
+				<isif condition="${!isPaidyEnabled && paymentMethodType.value.equals('PAIDY_STANDARD')}"><iscontinue/></isif>
 				<div class="form-row label-inline">
 					<isset name="radioID" value="${paymentMethodType.value}" scope="page"/>
 					<div class="field-wrapper">
