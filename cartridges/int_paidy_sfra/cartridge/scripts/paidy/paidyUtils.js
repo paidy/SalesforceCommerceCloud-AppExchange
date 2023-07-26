@@ -26,10 +26,10 @@ function formatDate(date) {
  */
 function getGross(order) {
     return order.totalGrossPrice.available
-      ? order.totalGrossPrice
-      : order
-        .getAdjustedMerchandizeTotalPrice(true)
-        .add(order.giftCertificateTotalPrice);
+        ? order.totalGrossPrice
+        : order
+            .getAdjustedMerchandizeTotalPrice(true)
+            .add(order.giftCertificateTotalPrice);
 }
 
 /**
@@ -60,12 +60,12 @@ function getBuyerData(customer, now) {
         };
     }
     var it = OrderMgr.searchOrders(
-      'customerNo={0} AND (status={1} OR status={2} OR status={3})',
-      'creationDate',
-      customer.profile.customerNo,
-      Order.ORDER_STATUS_NEW,
-      Order.ORDER_STATUS_OPEN,
-      Order.ORDER_STATUS_COMPLETED
+        'customerNo={0} AND (status={1} OR status={2} OR status={3})',
+        'creationDate',
+        customer.profile.customerNo,
+        Order.ORDER_STATUS_NEW,
+        Order.ORDER_STATUS_OPEN,
+        Order.ORDER_STATUS_COMPLETED
     );
     var count = 0;
     var sum = 0;
@@ -76,8 +76,8 @@ function getBuyerData(customer, now) {
 
         // Exclude paidy order.
         if (
-          empty(o.getPaymentInstruments(Preferences.PaymentType.paidyStandard)) &&
-          empty(o.getPaymentInstruments(Preferences.PaymentType.paidySubscription))
+            empty(o.getPaymentInstruments(Preferences.PaymentType.paidyStandard)) &&
+            empty(o.getPaymentInstruments(Preferences.PaymentType.paidySubscription))
         ) {
             var jt = o.getPaymentInstruments().iterator();
 
@@ -90,19 +90,19 @@ function getBuyerData(customer, now) {
                         ++count;
                     } catch (e) {
                         log.error(
-                          'An error occurred in getBuyerData. Error message:' +
-                          e.toString() +
-                          '\ncustomerNo:' +
-                          customer.profile.customerNo +
-                          '\norderNo:' +
-                          o.orderNo
+                            'An error occurred in getBuyerData. Error message:' +
+                            e.toString() +
+                            '\ncustomerNo:' +
+                            customer.profile.customerNo +
+                            '\norderNo:' +
+                            o.orderNo
                         );
                     }
                 }
 
                 if (
-                  latestOrder == null ||
-                  latestOrder.getExportAfter().getTime() < o.getExportAfter().getTime()
+                    latestOrder == null ||
+                    latestOrder.getExportAfter().getTime() < o.getExportAfter().getTime()
                 ) {
                     latestOrder = o;
                 }
@@ -116,8 +116,8 @@ function getBuyerData(customer, now) {
         ltv: sum,
         last_order_amount: latestOrder == null ? 0 : getGross(latestOrder).value,
         last_order_at: latestOrder == null
-          ? 0
-          : Math.max(0, diffDays(now, latestOrder.getExportAfter()))
+            ? 0
+            : Math.max(0, diffDays(now, latestOrder.getExportAfter()))
     };
 }
 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers xmlns="http://www.demandware.com/xml/impex/customer/2006-10-31">
+    <customer customer-no="paidy00000001">
+        <credentials>
+            <login>yamada@paidy.com</login>
+            <password encrypted="true" encryptionScheme="scrypt">$s0$b0401$b1jmg+eJVV9WS6abZWCrAQ==$0V8slytziGhfU8hdvCwt5/SyI0e4XvIe4/1l85uslgs=</password>
+            <enabled-flag>true</enabled-flag>
+            <password-question/>
+            <password-answer/>
+        </credentials>
+        <profile>
+            <salutation/>
+            <title/>
+            <first-name>太郎</first-name>
+            <second-name/>
+            <last-name>山田</last-name>
+            <suffix/>
+            <company-name/>
+            <job-title/>
+            <email>yamada@paidy.com</email>
+            <phone-home>08018000001</phone-home>
+            <phone-business/>
+            <phone-mobile/>
+            <fax/>
+            <creation-date>2020-01-22T01:24:00.000Z</creation-date>
+            <last-login-time>2020-01-23T05:35:07.000Z</last-login-time>
+            <last-visit-time>2020-01-23T05:35:07.000Z</last-visit-time>
+            <preferred-locale/>
+        </profile>
+        <addresses>
+            <address address-id="paidy" preferred="true">
+                <salutation/>
+                <title/>
+                <first-name>太郎</first-name>
+                <second-name/>
+                <last-name>山田</last-name>
+                <suffix/>
+                <company-name/>
+                <job-title/>
+                <address1>六本木4-22-1</address1>
+                <address2>AXISビル10F</address2>
+                <suite/>
+                <postbox/>
+                <city>港区</city>
+                <postal-code>106-2004</postal-code>
+                <state-code>東京都</state-code>
+                <country-code>JP</country-code>
+                <phone>08018000001</phone>
+            </address>
+        </addresses>
+        <note/>
+    </customer>
+
+</customers>

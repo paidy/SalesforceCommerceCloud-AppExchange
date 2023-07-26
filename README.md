@@ -1,9 +1,9 @@
-# SalesforceCommerceCloud-AppExchange
+# Salesforce Commerce Cloud Paidy Cartridge
 
-Paidy provides a cartridge to integrate with Salesforce Commerce Cloud (SFCC).
+Paidy provides a LINK cartridge to integrate with Salesforce Commerce Cloud (SFCC).
 
 This cartridge enables a SFCC storefront to use the Paidy payment service.
-This cartridge supports SFRA version 6.1.0 and SiteGenesis JS-Controllers
+This cartridge supports SFRA version 6.0.0 and SiteGenesis JS-Controllers
 
 
 ## Version
@@ -17,8 +17,8 @@ This cartridge supports SFRA version 6.1.0 and SiteGenesis JS-Controllers
 
 |Cartridge|Integration|
 |-|-|
-|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v22.1.1_en.pdf|
-|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v22.1.1_en.pdf|
+|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v22.1.0_en.pdf|
+|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v22.1.0_en.pdf|
 
 
 ## Testing
@@ -31,7 +31,7 @@ This cartridge supports SFRA version 6.1.0 and SiteGenesis JS-Controllers
 
 ### Running integration tests
 1. Download `app_storefront_base` cartridge
-  - URL : `https://github.com/paidy/SalesforceCommerceCloud-AppExchange`
+  - URL : `https://github.com/SalesforceCommerceCloud/storefront-reference-architecture`
 1. Place `app_storefront_base` cartridge in `link_paidy\cartridges`
 1. Create `dw.json` in `link_paidy`
   ```

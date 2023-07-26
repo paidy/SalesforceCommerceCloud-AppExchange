@@ -5,14 +5,8 @@
 var assert = require('chai').assert;
 var proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 
-describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
-    var Authorize = proxyquire('../../../../../../cartridges/int_paidy/cartridge/scripts/paidy/standard/authorize', {
-        'dw/catalog/ProductMgr': function () { return {}; },
-        'dw/order/OrderMgr': {
-            getOrder: function () {
-                return {};
-            }
-        },
+describe('SFRA: Authorize for PAIDY_STANDARD', function () {
+    var Authorize = proxyquire('../../../../../../cartridges/int_paidy_sfra/cartridge/scripts/paidy/standard/authorize', {
         'dw/order/ProductLineItem': function () { return {}; },
         'dw/order/TaxMgr': {
             getTaxationPolicy: function () {
@@ -20,22 +14,17 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
             },
             TAX_POLICY_NET: 1
         },
-        'dw/order/OrderPaymentInstrument': function () { return {}; },
-        'dw/system/Logger': {
-            debug: function (text) {
-                return text;
-            },
-            error: function (text) {
-                return text;
-            },
-            getLogger: function () {
+        'dw/catalog/ProductMgr': function () { return {}; },
+        'dw/order/OrderMgr': {
+            getOrder: function () {
                 return {
-                    error: function () {
+                    getOrderNo: function () {
                         return '';
                     }
                 };
             }
         },
+        'dw/order/OrderPaymentInstrument': function () { return {}; },
         'dw/system/Site': {
             getCurrent: function () {
                 return {
@@ -45,7 +34,20 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 };
             }
         },
-        'dw/value/Money': function () { return {}; },
+        'dw/system/Status': function () {
+            return {
+                addDetail: function () {
+                    return {
+                        PaymentId: 'test_PaymentId'
+                    };
+                },
+                details: {
+                    ResultPaidy: '{"amount": 1903,"order": {"items": [{"id": "PDI001","quantity": 1,"title": "Paidyスニーカー","unit_price": 1230,"description": ""}],"shipping": 500,"tax": 173}}'
+                },
+                OK: 0,
+                ERROR: 1
+            };
+        },
         'dw/web/Resource': {
             msg: function (key, bundleName, defaultMessage) {
                 if (key === 'paidy.payment.error.timeout' && bundleName === 'checkout' && defaultMessage === null) {
@@ -58,21 +60,32 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 return '';
             }
         },
-        '*/cartridge/scripts/paidy/subscription/paidyPayment': {
-            paidyPay: function () {
+        'dw/value/Money': function () { return {}; },
+        'dw/system/Logger': {
+            debug: function (text) {
+                return text;
+            },
+            error: function (text) {
+                return text;
+            },
+            getLogger: function (text) {
+                return text;
+            }
+        },
+        '*/cartridge/scripts/paidy/subscription/callService': {
+            ServiceType: function () {
                 return {
-                    error: false,
-                    details: {
-                        ResultPaidy: '{"amount": 1903,"order": {"items": [{"id": "PDI001","quantity": 1,"title": "Paidyスニーカー","unit_price": 1230,"description": ""}],"shipping": 500,"tax": 173}}'
-                    }
+                    get: ''
+                };
+            },
+            callService: function () {
+                return {
+                    status: 'authorized',
+                    id: 'test_id'
                 };
             }
         },
-        '*/cartridge/scripts/object/preferences': {
-            PaymentType: {
-                paidyStandard: 'PAIDY_STANDARD'
-            }
-        },
+        '*/cartridge/scripts/object/preferences': { PaymentType: function () {} },
         '*/cartridge/scripts/paidy/paidyUtils': {
             getBuyerData: function (customer) {
                 if (customer.anonymous) {
@@ -109,6 +122,7 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
     var order = require('../../../../../mocks/dw/order/Order');
     var customer = require('../../../../../mocks/dw/customer/Customer');
 
+
     // request definition
     global.request = {
         httpParameterMap: {
@@ -117,6 +131,7 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
             }
         }
     };
+
 
     // empty definition
     global.empty = function (params) {
@@ -179,12 +194,11 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
         };
 
         assert.equal(JSON.stringify(Authorize.paidyPay(
-            customer.baseCustomerMock({
-                anonymous: false
-            }),
-            order.baseOrderMock())), JSON.stringify(expectedValue));
+                customer.baseCustomerMock({
+                    anonymous: false
+                }),
+                order.baseOrderMock())), JSON.stringify(expectedValue));
     });
-
 
     // 引数のmock値を変更して再出力する用
     it('should return the parameters containing guest customer information required by the Paidy API if the anonymous flag is true', function () {
@@ -220,12 +234,11 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
         };
 
         assert.equal(JSON.stringify(Authorize.paidyPay(
-            customer.baseCustomerMock({
-                anonymous: true
-            }),
-            order.baseOrderMock())), JSON.stringify(expectedValue));
+                customer.baseCustomerMock({
+                    anonymous: true
+                }),
+                order.baseOrderMock())), JSON.stringify(expectedValue));
     });
-
 
     it('should return response JSON containing registered customer information from Paidy API if the anonymous flag is false', function () {
         var expectedValue = {
@@ -281,12 +294,12 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
         };
 
         assert.equal(JSON.stringify(
-            Authorize.getConfirmationPaidyJSON(
-                'PAIDY_STANDARD',
-                customer.baseCustomerMock({
-                    anonymous: false
-                }),
-                order.baseOrderMock())), JSON.stringify(expectedValue));
+                Authorize.getConfirmationPaidyJSON(
+                    'PAIDY_STANDARD',
+                    customer.baseCustomerMock({
+                        anonymous: false
+                    }),
+                    order.baseOrderMock())), JSON.stringify(expectedValue));
     });
 
     // 引数のmock値を変更して再出力する用
@@ -344,12 +357,12 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
         };
 
         assert.equal(JSON.stringify(
-            Authorize.getConfirmationPaidyJSON(
-                'PAIDY_STANDARD',
-                customer.baseCustomerMock({
-                    anonymous: true
-                }),
-                order.baseOrderMock())), JSON.stringify(expectedValue));
+                Authorize.getConfirmationPaidyJSON(
+                    'PAIDY_STANDARD',
+                    customer.baseCustomerMock({
+                        anonymous: true
+                    }),
+                    order.baseOrderMock())), JSON.stringify(expectedValue));
     });
 
     it('should return true if pass order information validation', function () {

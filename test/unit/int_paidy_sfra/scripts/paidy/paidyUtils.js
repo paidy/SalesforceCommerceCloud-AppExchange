@@ -39,8 +39,8 @@ describe('SFRA: Paidy payment utilities', function () {
         '*/cartridge/scripts/object/preferences': {
             PaymentType: function () {
                 return {
-                    paydyNomal: 'PAIDY_NORMAL',
-                    paydyRegular: 'PAIDY_REGULAR'
+                    paidyStandard: 'PAIDY_STANDARD',
+                    paidySubscription: 'PAIDY_SUBSCRIPTION'
                 };
             }
         }

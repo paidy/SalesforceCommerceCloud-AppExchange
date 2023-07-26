@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://www.demandware.com/xml/impex/services/2014-09-26">
+    <service-credential service-credential-id="paidy.http.payment">
+        <url>https://api.paidy.com</url>
+    </service-credential>
+
+    <service-profile service-profile-id="paidy.api.prof">
+    </service-profile>
+
+    <service service-id="paidy.api.payment">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <profile-id>paidy.api.prof</profile-id>
+        <credential-id>paidy.http.payment</credential-id>
+    </service>
+
+</services>
