@@ -32,9 +32,6 @@ function getPaidyConfig(payment) {
         logo_url:
       Site.getCurrent().getCustomPreferenceValue('paidy_logo_url') ||
       '',
-        metadata: {
-            Platform: 'Salesforce Commerce Cloud'
-        },
         closed: 'Replace this with a callback func. (callbackData) => {...}',
         payment_method: payment,
         submit_button: '.submit-order button[type="submit"]',
@@ -231,11 +228,7 @@ function paidyPay(customer, order) {
 
     var o = {
         amount: utils.getGross(order).subtract(nonPaidy).value,
-        // xFIXME: TAXが含まれていないきがする
-        // API DOCより totalGrossPrice: The grand total price gross of tax for LineItemCtnr,
-        // in purchase currency. Total prices represent the sum of product prices,
-        // services prices and adjustments
-        // 商品価格・サービス価格・値引きを含めた後の税込総額、だから含まれているはず
+        // getGross: 商品価格・サービス価格・値引きを含めた後の税込総額
         currency: 'JPY',
         store_name:
       Site.getCurrent().getCustomPreferenceValue(
@@ -244,7 +237,8 @@ function paidyPay(customer, order) {
         buyer: buyer === null ? {} : buyer,
         buyer_data: buyerData === null ? {} : buyerData,
         order: orderData === null ? {} : orderData,
-        shipping_address: shippingAddress === null ? {} : shippingAddress
+        shipping_address: shippingAddress === null ? {} : shippingAddress,
+        metadata: { Platform: 'Salesforce Commerce Cloud' }
     };
     o.test = true;
 
