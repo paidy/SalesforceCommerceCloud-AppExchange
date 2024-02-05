@@ -734,9 +734,8 @@ function selectedPaymentInstrument(order) {
     if (order.billing.payment && order.billing.payment.selectedPaymentInstruments
         && order.billing.payment.selectedPaymentInstruments.length > 0) {
         return order.billing.payment.selectedPaymentInstruments[0].paymentMethod;
-    } else {
-        return null;
     }
+    return null;
 }
 
 module.exports = {

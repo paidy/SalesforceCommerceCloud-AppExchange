@@ -1,0 +1,61 @@
+version: 2.1
+
+orbs:
+  slack: circleci/slack@4.4.4
+  node: circleci/node@5.1.0
+  codecov: codecov/codecov@3.2.4
+
+executors:
+  node:
+    docker:
+      - image: cimg/node:16.14.2
+    resource_class: xlarge
+
+commands:
+  notify-slack-mobile-builds:
+    steps:
+      - slack/notify:
+          channel: C02EQ3SQXHV # mobile-builds
+          event: fail
+          template: basic_fail_1
+          mentions: '@ux-engineers'
+
+jobs:
+  node:
+    executor: node
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm ci
+      - save_cache:
+          paths:
+            - ~/.npm
+          key: npm-packages-{{ .Environment.CACHE_VERSION }}-{{ checksum "package-lock.json" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+
+  build-and-test:
+    executor: node
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run test:ci
+      - codecov/upload
+      - notify-slack-mobile-builds
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+workflows:
+  build-test-lint:
+    jobs:
+      - node
+      - build-and-test:
+          requires:
+            - node
