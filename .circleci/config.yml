@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm ci
+          command: npm install
       - save_cache:
           paths:
             - ~/.npm
