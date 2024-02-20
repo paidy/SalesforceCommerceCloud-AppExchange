@@ -4,6 +4,17 @@ orbs:
   slack: circleci/slack@4.4.4
   node: circleci/node@5.1.0
   codecov: codecov/codecov@3.2.4
+  security-orb: paidy/security-orb@1.4.4
+
+#Args
+main-branch-name: &main-branch-name "master"
+
+
+# Filters
+all-branches: &all-branches
+  filters:
+    tags:
+      ignore: "/.*/"
 
 executors:
   node:
@@ -59,3 +70,13 @@ workflows:
       - build-and-test:
           requires:
             - node
+
+      - security-orb/security-scan-code:
+          name: branch-code-scan
+          context: 
+            - shared-security
+            - shared-circleci
+          main-branch-name: *main-branch-name
+          <<: [ *all-branches ]
+          requires:
+            - "build-and-test"
