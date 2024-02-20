@@ -4,7 +4,7 @@
   "description": "Paidy Link Cartridge",
   "main": "index.js",
   "engines": {
-    "node": ">=12.0"
+    "node": ">=10.24.1"
   },
   "scripts": {
     "test": "sgmf-scripts --test test/unit/**/*.js",
