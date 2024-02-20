@@ -78,3 +78,5 @@ workflows:
             - shared-circleci
           main-branch-name: *main-branch-name
           <<: [ *all-branches ]
+          requires:
+            - "build-and-test"
