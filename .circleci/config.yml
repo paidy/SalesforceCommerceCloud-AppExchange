@@ -44,7 +44,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: npm run test
+      - run: npm run test:ci
       - codecov/upload
       - notify-slack-mobile-builds
       - store_artifacts:

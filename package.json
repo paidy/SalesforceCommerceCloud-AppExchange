@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "sgmf-scripts --test test/unit/**/*.js",
+    "test:ci": "TZ=Asia/Tokyo npm run cover --ci --maxWorkers=3",
     "cover": "sgmf-scripts --cover 'test/unit'",
     "test:integration": "sgmf-scripts --integration 'test/integration/**/*.js'",
     "bdd:snippets": "./node_modules/.bin/codeceptjs bdd:snippets --path",
