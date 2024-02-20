@@ -18,7 +18,7 @@ commands:
           channel: C06KJ6BJT7X # salesforcecommencecloud-builds
           event: fail
           template: basic_fail_1
-          mentions: '@ux-engineers'
+          mentions: '@Sai Lao Kham'
 
 jobs:
   node:
@@ -31,7 +31,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.npm
-          key: npm-packages-{{ .Environment.CACHE_VERSION }}-{{ checksum "package-lock.json" }}
+          key: npm-packages-{{ checksum "package-lock.json" }}
       - persist_to_workspace:
           root: .
           paths:
