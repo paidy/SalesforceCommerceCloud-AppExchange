@@ -4,7 +4,7 @@ orbs:
   slack: circleci/slack@4.4.4
   node: circleci/node@5.1.0
   codecov: codecov/codecov@3.2.4
-  security-orb: paidy/security-orb@1.4.1
+  security-orb: paidy/security-orb@1.4.3
 
 #Args
 main-branch-name: &main-branch-name "master"
