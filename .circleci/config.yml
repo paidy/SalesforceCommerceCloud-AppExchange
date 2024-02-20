@@ -15,7 +15,7 @@ commands:
   notify-slack-mobile-builds:
     steps:
       - slack/notify:
-          channel: C02EQ3SQXHV # mobile-builds
+          channel: C06KJ6BJT7X # salesforcecommencecloud-builds
           event: fail
           template: basic_fail_1
           mentions: '@ux-engineers'
@@ -44,7 +44,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: npm run test:ci
+      - run: npm run test
       - codecov/upload
       - notify-slack-mobile-builds
       - store_artifacts:
