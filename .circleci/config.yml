@@ -73,6 +73,7 @@ workflows:
 
       - security-orb/security-scan-code:
           name: branch-code-scan
+          additional-parameters: "--all-projects"
           context: 
             - shared-security
             - shared-circleci
