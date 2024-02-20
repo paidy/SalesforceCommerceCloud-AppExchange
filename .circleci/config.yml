@@ -44,6 +44,9 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+      - run:
+          name: List files
+          command: ls -la
       - run: npm run test:ci
       - codecov/upload
       - notify-slack-mobile-builds
