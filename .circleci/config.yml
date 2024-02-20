@@ -18,7 +18,7 @@ commands:
           channel: C06KJ6BJT7X # salesforcecommencecloud-builds
           event: fail
           template: basic_fail_1
-          mentions: '@Sai Lao Kham'
+          mentions: '@ux-engineers'
 
 jobs:
   node:
@@ -44,9 +44,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run:
-          name: List files
-          command: ls -la
       - run: npm run test:ci
       - codecov/upload
       - notify-slack-mobile-builds
