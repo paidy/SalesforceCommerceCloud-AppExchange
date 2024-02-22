@@ -690,6 +690,7 @@ server.post('PlaceOrder', server.middleware.https, function (req, res, next) {
         return next();
     } else if (paidyHelpers.isPaidySubscription(currentBasket.paymentInstrument.paymentMethod)) {
         var paidySubscriptionAuthorize = require('*/cartridge/scripts/paidy/subscription/authorize')
+            // eslint-disable-next-line new-cap
             .Authorize(order, req.querystring.paidyToken);
         if (paidySubscriptionAuthorize.error) {
             Transaction.wrap(function () { OrderMgr.failOrder(order); });

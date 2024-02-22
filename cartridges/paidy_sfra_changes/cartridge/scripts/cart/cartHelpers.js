@@ -430,6 +430,7 @@ function getReportingUrlAddToCart(currentBasket, resultError) {
 
     return false;
 }
+// eslint-disable-next-line valid-jsdoc
 /**
  * Deletes multiple payment instruments.
  *
@@ -439,7 +440,7 @@ function getReportingUrlAddToCart(currentBasket, resultError) {
  * @param {dw.util.Collection} paymentInstruments - The payment instruments to remove.
  */
 function removePaymentInstruments(currentBasket, paymentInstruments) {
-    collections.forEach(paymentInstruments, function(item) {
+    collections.forEach(paymentInstruments, function (item) {
         currentBasket.removePaymentInstrument(item);
     });
 }
