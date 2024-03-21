@@ -143,7 +143,8 @@ function getPaidyData(order, customer, paidyToken) {
             store_name: storeName,
             buyer_data: buyerData,
             order: orderData,
-            shipping_address: shippingAddress
+            shipping_address: shippingAddress,
+            metadata: { Platform: 'Salesforce Commerce Cloud' }
         };
     } else {
         paidyData = {
@@ -152,7 +153,8 @@ function getPaidyData(order, customer, paidyToken) {
             currency: currency,
             buyer_data: buyerData,
             order: orderData,
-            shipping_address: shippingAddress
+            shipping_address: shippingAddress,
+            metadata: { Platform: 'Salesforce Commerce Cloud' }
         };
     }
 

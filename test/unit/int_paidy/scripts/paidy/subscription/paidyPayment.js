@@ -5,7 +5,7 @@ var assert = require('chai').assert;
 var proxyquire = require('proxyquire').noCallThru().noPreserveCache();
 
 describe('SiteGenesis: Confirm payment for PAIDY_SUBSCRIPTION', function () {
-    var PaidyPayment = proxyquire('../../../../../../cartridges/int_paidy/cartridge/scripts/paidy/subscription/paidyPayment', {
+    var PaidyPayment = proxyquire('../../../../../../cartridges/int_paidy/cartridge/scripts/paidy/subscription/PaidyPayment', {
         'dw/catalog/ProductMgr': function () { return {}; },
         'dw/order/TaxMgr': {
             getTaxationPolicy: function () {

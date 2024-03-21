@@ -130,9 +130,6 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
         var expectedValue = {
             api_key: '',
             logo_url: '',
-            metadata: {
-                Platform: 'Salesforce Commerce Cloud'
-            },
             closed: 'Replace this with a callback func. (callbackData) => {...}',
             payment_method: 'PAIDY_STANDARD',
             submit_button: '.submit-order button[type="submit"]',
@@ -175,6 +172,9 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 order_token: 'test-token'
             },
             shipping_address: { line1: '', line2: '', city: '', state: '', zip: '' },
+            metadata: {
+                Platform: 'Salesforce Commerce Cloud'
+            },
             test: true
         };
 
@@ -213,6 +213,9 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 order_token: 'test-token'
             },
             shipping_address: { line1: '', line2: '', city: '', state: '', zip: '' },
+            metadata: {
+                Platform: 'Salesforce Commerce Cloud'
+            },
             test: true
         };
 
@@ -230,9 +233,6 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
             config: {
                 api_key: '',
                 logo_url: '',
-                metadata: {
-                    Platform: 'Salesforce Commerce Cloud'
-                },
                 closed: 'Replace this with a callback func. (callbackData) => {...}',
                 payment_method: 'PAIDY_STANDARD',
                 submit_button: '.submit-order button[type="submit"]',
@@ -273,6 +273,9 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 shipping_address: {
                     line1: '', line2: '', city: '', state: '', zip: ''
                 },
+                metadata: {
+                    Platform: 'Salesforce Commerce Cloud'
+                },
                 test: true
             }
         };
@@ -293,9 +296,6 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
             config: {
                 api_key: '',
                 logo_url: '',
-                metadata: {
-                    Platform: 'Salesforce Commerce Cloud'
-                },
                 closed: 'Replace this with a callback func. (callbackData) => {...}',
                 payment_method: 'PAIDY_STANDARD',
                 submit_button: '.submit-order button[type="submit"]',
@@ -335,6 +335,9 @@ describe('SiteGenesis: Authorize for PAIDY_STANDARD', function () {
                 },
                 shipping_address: {
                     line1: '', line2: '', city: '', state: '', zip: ''
+                },
+                metadata: {
+                    Platform: 'Salesforce Commerce Cloud'
                 },
                 test: true
             }

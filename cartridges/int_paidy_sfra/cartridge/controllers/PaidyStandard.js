@@ -39,7 +39,6 @@ server.get(
     'FailOrder',
     server.middleware.https,
     csrfProtection.validateAjaxRequest,
-    // eslint-disable-next-line consistent-return
     function (req, res, next) {
         var orderData = OrderMgr.getOrder(
             req.querystring.orderNo,

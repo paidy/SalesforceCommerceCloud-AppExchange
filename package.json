@@ -1,14 +1,13 @@
 {
   "name": "link_paidy",
-  "version": "22.1.0",
+  "version": "22.1.1",
   "description": "Paidy Link Cartridge",
   "main": "index.js",
   "engines": {
-    "node": ">=10.24.1"
+    "node": ">=4.0"
   },
   "scripts": {
     "test": "sgmf-scripts --test test/unit/**/*.js",
-    "test:ci": "TZ=Asia/Tokyo npm run cover --ci --maxWorkers=3",
     "cover": "sgmf-scripts --cover 'test/unit'",
     "test:integration": "sgmf-scripts --integration 'test/integration/**/*.js'",
     "bdd:snippets": "./node_modules/.bin/codeceptjs bdd:snippets --path",

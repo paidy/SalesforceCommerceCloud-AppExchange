@@ -188,23 +188,14 @@
       dataType: 'json',
       url: $(buttonSelector).attr('data-action')
     }).done(function (response) {
-      if ('status' in response && response.status !== 200) {
-        // If an error occurs, we want to display an alert.
-        // Therefore, ignore the `no-alert` lint error.
-        // eslint-disable-next-line no-alert
-        alert(messages.errors.authorize);
-        if (response.paidyPay.order.order_ref) {
-          failOrder(response.paidyPay.order.order_ref,response.paidyPay.order.order_token);
+      try {
+        if (response.status != 200) {
+          throw order;
         }
-        return;
-      }
-      if (response.error) {
-        if (response.cartError) {
-          window.location.href = response.redirectUrl;
-        } else if (response.sessionLoginError) {
-          $('#sessionTimeOutLoginModal').modal('show');
-        } else {
-          showErrorMessage(response.errorMessage);
+      } catch (e) {
+        alert(messages.errors.authorize);
+        if (response.orderNo) {
+          failOrder(response.orderNo);
         }
         return;
       }
@@ -321,7 +312,7 @@
   /**
    * Fail order
    */
-  function failOrder(orderNo,orderToken) {
+  function failOrder(orderNo) {
     var csrfToken = '';
 
     if ($("input[name='csrf_token']").length) {
@@ -337,8 +328,7 @@
       url: $(buttonSelector).attr('data-paidy-standard-fail-order'),
       data: {
         orderNo: escape(orderNo),
-        csrf_token: csrfToken,
-        orderToken: orderToken
+        csrf_token: csrfToken
       }
     }).done(function (response) { });
   }
