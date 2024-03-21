@@ -3,22 +3,24 @@
 Paidy provides a LINK cartridge to integrate with Salesforce Commerce Cloud (SFCC).
 
 This cartridge enables a SFCC storefront to use the Paidy payment service.
-This cartridge supports SFRA version 6.0.0 and SiteGenesis JS-Controllers
+This cartridge supports SFRA version 6.1.0 and SiteGenesis JS-Controllers
 
 
 ## Version
 
 |Cartridge|version|
 |-|-|
-|int_paidy / int_paidy_controllers |22.1.0|
-|int_paidy_sfra|22.1.0|
+|int_paidy / int_paidy_controllers |22.1.1|
+|int_paidy_sfra|22.1.1|
 
 ## Integration
 
 |Cartridge|Integration|
 |-|-|
-|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v22.1.0_en.pdf|
-|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v22.1.0_en.pdf|
+|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v22.1.1_en.pdf|
+|int_paidy / int_paidy_controllers |./documentation/Paidy_設定手順書_v22.1.1.pdf|
+|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v22.1.1_en.pdf|
+|int_paidy_sfra|./documentation/Paidy_sfra 設定手順書_v22.1.1.pdf|
 
 
 ## Testing
