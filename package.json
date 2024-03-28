@@ -1,6 +1,6 @@
 {
   "name": "link_paidy",
-  "version": "22.1.0",
+  "version": "24.3.0",
   "description": "Paidy Link Cartridge",
   "main": "index.js",
   "engines": {
