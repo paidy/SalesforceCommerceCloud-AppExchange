@@ -1,0 +1,3 @@
+cartridges/int_paidy/cartridge/static/**/*.js
+cartridges/int_paidy_sfra/cartridge/static/**/*.js
+webpack.config.js
