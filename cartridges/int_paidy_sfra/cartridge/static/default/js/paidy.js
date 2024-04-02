@@ -356,6 +356,7 @@
         // go to appropriate stage and display error message
         defer.reject(data);
         showErrorMessage(data.errorMessage);
+        disableSubmitBtn(buttonSelector);
       }
     } else {
       var continueUrl = data.continueUrl;
