@@ -10,17 +10,17 @@ This cartridge supports SFRA version 6.1.0 and SiteGenesis JS-Controllers
 
 |Cartridge|version|
 |-|-|
-|int_paidy / int_paidy_controllers |24.4.0|
-|int_paidy_sfra|24.4.0|
+|int_paidy / int_paidy_controllers |24.7.0|
+|int_paidy_sfra|24.7.0|
 
 ## Integration
 
 |Cartridge|Integration|
 |-|-|
-|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v24.4.0_en.pdf|
-|int_paidy / int_paidy_controllers |./documentation/Paidy_設定手順書_v24.4.0.pdf|
-|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v24.4.0_en.pdf|
-|int_paidy_sfra|./documentation/Paidy_sfra 設定手順書_v24.4.0.pdf|
+|int_paidy / int_paidy_controllers |./documentation/Paidy_Integration_Guide_v24.7.0_en.pdf|
+|int_paidy / int_paidy_controllers |./documentation/Paidy_設定手順書_v24.7.0.pdf|
+|int_paidy_sfra|./documentation/Paidy_sfra_Integration_Guide_v24.7.0_en.pdf|
+|int_paidy_sfra|./documentation/Paidy_sfra 設定手順書_v24.7.0.pdf|
 
 
 ## Testing
