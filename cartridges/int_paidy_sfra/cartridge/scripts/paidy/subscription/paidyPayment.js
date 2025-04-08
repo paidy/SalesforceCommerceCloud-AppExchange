@@ -61,12 +61,12 @@ function getPaidyData(order, customer, paidyToken) {
         : order.shippingTotalPrice.value;
     var product = null;
     productLineItems.toArray().forEach(function (pLineItem) {
-    // get product from product id
+        // get product from product id
         product = ProductMgr.getProduct(pLineItem.productID);
         var paidyItemUnitPrice =
-      pLineItem.quantityValue === 0
-          ? pLineItem.adjustedPrice.value
-          : pLineItem.adjustedPrice.value / pLineItem.quantityValue;
+            pLineItem.quantityValue === 0
+                ? pLineItem.adjustedPrice.value
+                : pLineItem.adjustedPrice.value / pLineItem.quantityValue;
         items.push({
             id: pLineItem.productID,
             quantity: pLineItem.quantityValue,
@@ -143,7 +143,8 @@ function getPaidyData(order, customer, paidyToken) {
             store_name: storeName,
             buyer_data: buyerData,
             order: orderData,
-            shipping_address: shippingAddress
+            shipping_address: shippingAddress,
+            metadata: { Platform: 'Salesforce Commerce Cloud' }
         };
     } else {
         paidyData = {
@@ -152,7 +153,8 @@ function getPaidyData(order, customer, paidyToken) {
             currency: currency,
             buyer_data: buyerData,
             order: orderData,
-            shipping_address: shippingAddress
+            shipping_address: shippingAddress,
+            metadata: { Platform: 'Salesforce Commerce Cloud' }
         };
     }
 
@@ -210,9 +212,9 @@ function paidyPay(currentOrder, paidyToken) {
                     break;
                 case 'rejected':
                     result = new Status(
-                    Status.ERROR,
-                    'paidy.payment.error.rejected'
-                );
+                        Status.ERROR,
+                        'paidy.payment.error.rejected'
+                    );
                     break;
                 case 'closed':
                     break;
@@ -223,9 +225,9 @@ function paidyPay(currentOrder, paidyToken) {
     } catch (e) {
         log.error(
             'An error occurred in paidyPay. Error message:' +
-        e.toString() +
-        '\norderNo:' +
-        currentOrder.getOrderNo()
+            e.toString() +
+            '\norderNo:' +
+            currentOrder.getOrderNo()
         );
     }
     return result;

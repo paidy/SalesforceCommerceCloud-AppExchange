@@ -30,18 +30,15 @@ function getPaidyConfig(payment) {
             'paidy_api_key'
         ),
         logo_url:
-      Site.getCurrent().getCustomPreferenceValue('paidy_logo_url') ||
-      '',
-        metadata: {
-            Platform: 'Salesforce Commerce Cloud'
-        },
+            Site.getCurrent().getCustomPreferenceValue('paidy_logo_url') ||
+            '',
         closed: 'Replace this with a callback func. (callbackData) => {...}',
         payment_method: payment,
         submit_button: '.submit-order button[type="submit"]',
         timeout:
-      +Site.getCurrent().getCustomPreferenceValue(
-          'paidy_time_out_second'
-      ) || 300,
+            +Site.getCurrent().getCustomPreferenceValue(
+                'paidy_time_out_second'
+            ) || 300,
         messages: {
             errors: {
                 timeout: Resource.msg(
@@ -78,9 +75,9 @@ function collectItems(order) {
         if (item instanceof ProductLineItem) {
             var product = ProductMgr.getProduct(item.productID);
             var paidyItemUnitPrice =
-        item.quantity.value === 0
-            ? item.adjustedPrice.value
-            : item.adjustedPrice.value / item.quantity.value;
+                item.quantity.value === 0
+                    ? item.adjustedPrice.value
+                    : item.adjustedPrice.value / item.quantity.value;
             xs.push({
                 id: item.productID,
                 quantity: item.quantity.value,
@@ -125,8 +122,8 @@ function paidyPay(customer, order) {
         buyer = {
             email: order.customerEmail || '',
             name1:
-        order.billingAddress.lastName + ' ' + order.billingAddress.firstName ||
-        '',
+                order.billingAddress.lastName + ' ' + order.billingAddress.firstName ||
+                '',
             phone: order.billingAddress.phone || ''
         };
         buyer.dob = null;
@@ -136,11 +133,11 @@ function paidyPay(customer, order) {
     } catch (e) {
         log.error(
             'An error occurred at point # 1 on paidyPay.\nError message:' +
-        e.toString() +
-        '\norderNo:' +
-        order.orderNo +
-        '\ncustomerNo:' +
-        order.customerNo
+            e.toString() +
+            '\norderNo:' +
+            order.orderNo +
+            '\ncustomerNo:' +
+            order.customerNo
         );
     }
 
@@ -150,11 +147,11 @@ function paidyPay(customer, order) {
     } catch (e) {
         log.error(
             'An error occurred at point # 2 on paidyPay. Error message:' +
-        e.toString() +
-        '\ncustomerNo:' +
-        order.customerNo +
-        '\nnow:' +
-        now
+            e.toString() +
+            '\ncustomerNo:' +
+            order.customerNo +
+            '\nnow:' +
+            now
         );
     }
     var orderData = null;
@@ -194,11 +191,11 @@ function paidyPay(customer, order) {
     } catch (e) {
         log.error(
             'An error occurred at point # 3 on paidyPay. Error message:' +
-        e.toString() +
-        '\ncustomerNo:' +
-        order.customerNo +
-        '\norder.orderNo:' +
-        order.orderNo
+            e.toString() +
+            '\ncustomerNo:' +
+            order.customerNo +
+            '\norder.orderNo:' +
+            order.orderNo
         );
     }
 
@@ -221,30 +218,27 @@ function paidyPay(customer, order) {
     } catch (e) {
         log.error(
             'An error occurred at point # 4 on paidyPay. Error message:' +
-        e.toString() +
-        '\ncustomerNo:' +
-        order.customerNo +
-        '\norder.orderNo:' +
-        order.orderNo
+            e.toString() +
+            '\ncustomerNo:' +
+            order.customerNo +
+            '\norder.orderNo:' +
+            order.orderNo
         );
     }
 
     var o = {
         amount: utils.getGross(order).subtract(nonPaidy).value,
-        // xFIXME: TAXが含まれていないきがする
-        // API DOCより totalGrossPrice: The grand total price gross of tax for LineItemCtnr,
-        // in purchase currency. Total prices represent the sum of product prices,
-        // services prices and adjustments
-        // 商品価格・サービス価格・値引きを含めた後の税込総額、だから含まれているはず
+        // getGross: 商品価格・サービス価格・値引きを含めた後の税込総額
         currency: 'JPY',
         store_name:
-      Site.getCurrent().getCustomPreferenceValue(
-          'paidy_store_name'
-      ) || '',
+            Site.getCurrent().getCustomPreferenceValue(
+                'paidy_store_name'
+            ) || '',
         buyer: buyer === null ? {} : buyer,
         buyer_data: buyerData === null ? {} : buyerData,
         order: orderData === null ? {} : orderData,
-        shipping_address: shippingAddress === null ? {} : shippingAddress
+        shipping_address: shippingAddress === null ? {} : shippingAddress,
+        metadata: { Platform: 'Salesforce Commerce Cloud' }
     };
     o.test = true;
 
@@ -274,11 +268,11 @@ function getConfirmationPaidyJSON(payment, currentCustomer, order) {
         };
         log.error(
             'An error occurred in getConfirmationPaidyJSON. Error message:' +
-        e.toString() +
-        '\ncustomerId:' +
-        order.customerNo +
-        '\norderNo:' +
-        order.orderNo
+            e.toString() +
+            '\ncustomerId:' +
+            order.customerNo +
+            '\norderNo:' +
+            order.orderNo
         );
     }
     return responsejson;
@@ -345,9 +339,9 @@ function fetchOrder(remote, local) {
                     break;
                 case 'rejected':
                     result = new Status(
-                    Status.ERROR,
-                    'paidy.payment.error.rejected'
-                );
+                        Status.ERROR,
+                        'paidy.payment.error.rejected'
+                    );
                     break;
                 case 'closed':
                     break;
@@ -358,9 +352,9 @@ function fetchOrder(remote, local) {
     } catch (e) {
         log.error(
             'An error occurred in fetchOrder. Error message:' +
-        e.toString() +
-        '\norderNo:' +
-        orderRef
+            e.toString() +
+            '\norderNo:' +
+            orderRef
         );
     }
 
@@ -391,20 +385,20 @@ function validate(remote, local) {
     }
 
     var valid =
-    remote.amount === validateLocal.amount &&
-    remote.order.shipping === validateLocal.order.shipping &&
-    remote.order.tax === validateLocal.order.tax &&
-    remote.order.items.length === validateLocal.order.items.length;
+        remote.amount === validateLocal.amount &&
+        remote.order.shipping === validateLocal.order.shipping &&
+        remote.order.tax === validateLocal.order.tax &&
+        remote.order.items.length === validateLocal.order.items.length;
 
     if (valid) {
         remote.order.items.forEach(function (a, index) {
             var b = validateLocal.order.items[index];
             if (a.id && b.id) {
                 valid =
-                valid &&
-                a.id === b.id &&
-                a.quantity === b.quantity &&
-                a.unit_price === b.unit_price;
+                    valid &&
+                    a.id === b.id &&
+                    a.quantity === b.quantity &&
+                    a.unit_price === b.unit_price;
             }
         });
     }
@@ -431,11 +425,11 @@ function validationPlaceOrder(payloadToPaidy, paidyResult) {
     } catch (e) {
         log.error(
             'An error occurred at point # 2 on validationPlaceOrder. Error message:' +
-        e.toString() +
-        '\npayloadToPaidy:' +
-        payloadToPaidy +
-        '\npaidyResult:' +
-        paidyResult
+            e.toString() +
+            '\npayloadToPaidy:' +
+            payloadToPaidy +
+            '\npaidyResult:' +
+            paidyResult
         );
         return false;
     }

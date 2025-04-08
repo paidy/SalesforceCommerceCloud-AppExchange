@@ -108,7 +108,7 @@ function callService(serviceSetting, logSetting) {
             }
 
             logContent += '#Data: ' + JSON.stringify(data);
-            
+
             logger.writeLog(0, 'Service Return Success', logContent, logSetting.orderNo, 0);
 
             return data;

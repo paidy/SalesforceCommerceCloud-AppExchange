@@ -356,7 +356,7 @@ function addProductToCart(currentBasket, productId, quantity, childProducts, opt
         perpetual = product.availabilityModel.inventoryRecord.perpetual;
         canBeAdded =
             (perpetual
-            || totalQtyRequested <= product.availabilityModel.inventoryRecord.ATS.value);
+                || totalQtyRequested <= product.availabilityModel.inventoryRecord.ATS.value);
     }
 
     if (!canBeAdded) {
@@ -430,13 +430,12 @@ function getReportingUrlAddToCart(currentBasket, resultError) {
 
     return false;
 }
-// eslint-disable-next-line valid-jsdoc
 /**
  * Deletes multiple payment instruments.
  *
  * @transactional
  * @alias module:models/CartModel~CartModel/removePaymentInstruments
- * @param {dw.order.Basket} basket - the target Basket object
+ * @param {dw.order.Basket} currentBasket - the target Basket object
  * @param {dw.util.Collection} paymentInstruments - The payment instruments to remove.
  */
 function removePaymentInstruments(currentBasket, paymentInstruments) {

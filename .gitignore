@@ -1,1 +1,5 @@
-node_modules
+cartridges/app_storefront_base/
+node_modules/
+dw.json
+.DS_Store
+.vscode/*.d.ts

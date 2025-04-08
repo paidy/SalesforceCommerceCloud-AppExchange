@@ -116,9 +116,9 @@ function callService(serviceSetting, logSetting) {
                 logContent += '#Email Address: ' + data.buyer.email;
                 logContent += '#Phone Number: ' + data.buyer.phone;
             }
-            
+
             logContent += '#Data: ' + JSON.stringify(data);
-            
+
             logger.writeLog(0, 'Service Return Success', logContent, logSetting.orderNo, 0);
 
             return data;
@@ -151,4 +151,3 @@ module.exports = {
     callService: callService,
     ServiceType: ServiceType
 };
-
