@@ -39,8 +39,8 @@ describe('SFRA: Paidy payment utilities', function () {
         '*/cartridge/scripts/object/preferences': {
             PaymentType: function () {
                 return {
-                    paydyNomal: 'PAIDY_NORMAL',
-                    paydyRegular: 'PAIDY_REGULAR'
+                    paidyStandard: 'PAIDY_STANDARD',
+                    paidySubscription: 'PAIDY_SUBSCRIPTION'
                 };
             }
         }
@@ -74,7 +74,7 @@ describe('SFRA: Paidy payment utilities', function () {
                     available: true
                 }
             }
-            )).value, 333);
+        )).value, 333);
     });
 
     it('should return the adjustment price in the order information if the available flag of the gross price is false', function () {
@@ -124,6 +124,7 @@ describe('SFRA: Paidy payment utilities', function () {
 
     it('should get buyer data as 0 for guest customer', function () {
         var expectedValue = {
+            user_id: null,
             age: 0,
             order_count: 0,
             ltv: 0,

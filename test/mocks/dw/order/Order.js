@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 'use strict';
 
 var Customer = require('../../../mocks/dw/customer/Customer');

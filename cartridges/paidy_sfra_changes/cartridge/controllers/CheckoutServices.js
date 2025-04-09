@@ -497,7 +497,7 @@ server.post(
                 usingMultiShipping = false;
             }
 
-            hooksHelper('app.customer.subscription', 'subscribeTo', [paymentForm.subscribe.checked, currentBasket.customerEmail], function () {});
+            hooksHelper('app.customer.subscription', 'subscribeTo', [paymentForm.subscribe.checked, currentBasket.customerEmail], function () { });
 
             var currentLocale = Locale.getLocale(req.locale.id);
 
@@ -690,8 +690,7 @@ server.post('PlaceOrder', server.middleware.https, function (req, res, next) {
         return next();
     } else if (paidyHelpers.isPaidySubscription(currentBasket.paymentInstrument.paymentMethod)) {
         var paidySubscriptionAuthorize = require('*/cartridge/scripts/paidy/subscription/authorize')
-            // eslint-disable-next-line new-cap
-            .Authorize(order, req.querystring.paidyToken);
+            .Authorize(order, req.querystring.paidyToken);  // eslint-disable-line new-cap
         if (paidySubscriptionAuthorize.error) {
             Transaction.wrap(function () { OrderMgr.failOrder(order); });
             res.json({
